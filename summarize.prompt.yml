@@ -1,0 +1,47 @@
+name: Text Summarizer
+
+on:
+  workflow_dispatch:
+    inputs:
+      text:
+        description: 'Text to summarize'
+        required: true
+        default: 'Enter the text to summarize here.'
+
+permissions:
+  models: read
+
+jobs:
+  summarize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Summarize text with GitHub Models
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEXT: ${{ github.event.inputs.text }}
+        run: |
+          python - <<'PY' > payload.json
+          import json, os
+
+          payload = {
+              "model": "openai/gpt-4o-mini",
+              "temperature": 0.5,
+              "messages": [
+                  {
+                      "role": "system",
+                      "content": "You are a text summarizer. Your only job is to summarize text given to you."
+                  },
+                  {
+                      "role": "user",
+                      "content": f'Summarize the given text, beginning with "Summary -":\n<text>\n{os.environ["TEXT"]}\n</text>'
+                  }
+              ]
+          }
+
+          print(json.dumps(payload))
+          PY
+
+          curl "https://models.github.ai/inference/chat/completions" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -d @payload.json

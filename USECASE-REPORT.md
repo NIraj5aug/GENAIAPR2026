@@ -115,17 +115,20 @@ Enable natural language Kubernetes operations via MCP.
 
 - Cloned the Kubernetes MCP server repository:
   - `kubernetes-mcp-server/`
-- Verified global npm listing for `@modelcontextprotocol/server-kubernetes`.
+- Added `KUBERNETES-MCP.md` with installation, usage, and evidence capture guidance.
+- Updated `screenshots/README.md` with Kubernetes MCP evidence filenames.
 
 ### Evidence
 
 - `git clone https://github.com/containers/kubernetes-mcp-server.git` completed successfully.
 - `npm list -g --depth=0 @modelcontextprotocol/server-kubernetes --json` reports the package in the global npm list.
+- `KUBERNETES-MCP.md` now documents the use case and evidence steps.
 
 ### Limitations
 
 - Kubernetes cluster access could not be verified because the cluster API endpoint was unreachable from this environment.
 - This prevented successful runtime verification of commands such as `kubectl get pods -n production`.
+- The MCP workflow is documented for a target cluster, but actual command execution requires a reachable kubeconfig and network access.
 
 ---
 

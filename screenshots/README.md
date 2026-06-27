@@ -10,3 +10,7 @@ Capture and store the following screenshots in this folder as evidence for the u
 6. `06_git_push_evidence.png` — terminal output showing successful `git push`.
 7. `07_k8s_connectivity_issue.png` — terminal output showing Kubernetes API connectivity issue or cluster status.
 8. `08_terraform_mcp_server.png` — evidence of the Terraform MCP server repository clone and initial preparation.
+9. `09_kubernetes_mcp_install.png` — installation and clone of Kubernetes MCP server.
+10. `10_kubernetes_mcp_run.png` — MCP server startup output.
+11. `11_kubernetes_mcp_command.png` — natural language command execution output.
+12. `12_kubernetes_mcp_logs.png` — log retrieval or troubleshooting output.

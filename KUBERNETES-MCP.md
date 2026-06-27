@@ -65,6 +65,7 @@ Use an MCP-capable client or AI assistant to issue commands such as:
 - The MCP server requires cluster access via a configured kubeconfig.
 - For production use, ensure RBAC and network policies are in place.
 - If the target cluster is unreachable, commands cannot be executed even though the MCP server itself is available.
+- Verification attempt: `kubectl` reported the current context, but could not connect to the cluster API at `https://34.60.78.134:443`.
 
 ## Evidence capture
 

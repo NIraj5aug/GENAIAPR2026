@@ -127,6 +127,7 @@ Enable natural language Kubernetes operations via MCP.
 ### Limitations
 
 - Kubernetes cluster access could not be verified because the cluster API endpoint was unreachable from this environment.
+- A connectivity check was performed with `kubectl config current-context` and `kubectl cluster-info`; the context was available but the cluster API at `https://34.60.78.134:443` failed to respond.
 - This prevented successful runtime verification of commands such as `kubectl get pods -n production`.
 - The MCP workflow is documented for a target cluster, but actual command execution requires a reachable kubeconfig and network access.
 

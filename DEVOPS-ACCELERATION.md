@@ -13,6 +13,12 @@ This repository now includes example DevOps automation for GitHub Actions and Az
   - Example Azure DevOps pipeline for a Maven-based Java service.
   - Runs `mvn clean test` and publishes JUnit results.
 
+- `package.json`, `package-lock.json`, `index.js`, and `test/index.test.js`
+  - Sample Node.js app and test to validate the GitHub Actions workflow.
+
+- `pom.xml`, `src/main/java/com/example/App.java`, and `src/test/java/com/example/AppTest.java`
+  - Sample Java app and JUnit test to validate the Azure DevOps pipeline.
+
 - `summarize.prompt.yml`
   - GitHub Models prompt file in the repository root.
 
@@ -21,13 +27,24 @@ This repository now includes example DevOps automation for GitHub Actions and Az
 1. Open this repository in VS Code.
 2. Verify your branch strategy: `main`, `develop`, and `feature/*`.
 3. Configure branch protection rules in GitHub for required status checks:
-   - `devops-acceleration.yml` jobs
-   - `codeql` analysis
-4. Update your package scripts if needed:
+   - `DevOps Acceleration CI` workflow
+   - `CodeQL Security Scan` job
+4. Confirm the sample Node.js project works:
+   - `npm ci`
    - `npm test`
-   - `npm run lint`
-5. If you are using Azure DevOps, connect the repo and create a pipeline using `azure-pipelines.yml`.
-6. Use GitHub Copilot or Copilot Chat to improve or extend these workflows.
+5. Confirm the sample Java project works:
+   - `mvn test`
+6. If you are using Azure DevOps, connect the repo and create a pipeline using `azure-pipelines.yml`.
+7. Use GitHub Copilot or Copilot Chat to improve or extend these workflows.
+
+## Using AI in VS Code
+
+- Install GitHub Copilot and Copilot Chat.
+- Sign in with your GitHub account for workspace suggestions.
+- Use Copilot prompts to generate or edit YAML workflows, pipeline definitions, and test cases.
+- Example prompts:
+  - "Create a GitHub Actions workflow that runs Node.js unit tests on push and performs CodeQL security scan on pull requests."
+  - "Generate an Azure DevOps pipeline YAML for a Java service with Maven build, unit tests, and publishing test results."
 
 ## Usage
 

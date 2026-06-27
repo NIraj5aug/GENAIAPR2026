@@ -60,3 +60,45 @@ jobs:
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v3
+
+  dast:
+    name: DAST with OWASP ZAP
+    runs-on: ubuntu-latest
+    needs: codeql
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start web server
+        run: |
+          nohup npm start > zap-server.log 2>&1 &
+          sleep 10
+
+      - name: Install OWASP ZAP and zap-cli
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zaproxy python3-pip
+          pip3 install zapcli
+
+      - name: Run ZAP baseline scan
+        run: |
+          zaproxy -daemon -host 127.0.0.1 -port 8090 -config api.disablekey=true &
+          sleep 20
+          zap-cli --zap-url http://127.0.0.1 --zap-port 8090 status --timeout 120
+          zap-cli --zap-url http://127.0.0.1 --zap-port 8090 open-url http://127.0.0.1:3000/
+          zap-cli --zap-url http://127.0.0.1 --zap-port 8090 quick-scan --self-contained --start-options "-config api.disablekey=true" http://127.0.0.1:3000/
+          zap-cli --zap-url http://127.0.0.1 --zap-port 8090 report -o zap-report.html -f html
+
+      - name: Upload ZAP report
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-report
+          path: zap-report.html

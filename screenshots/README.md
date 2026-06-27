@@ -9,3 +9,4 @@ Capture and store the following screenshots in this folder as evidence for the u
 5. `05_azure_pipelines_yml.png` — `azure-pipelines.yml`.
 6. `06_git_push_evidence.png` — terminal output showing successful `git push`.
 7. `07_k8s_connectivity_issue.png` — terminal output showing Kubernetes API connectivity issue or cluster status.
+8. `08_terraform_mcp_server.png` — evidence of the Terraform MCP server repository clone and initial preparation.

@@ -1,0 +1,15 @@
+{
+  "name": "genai-apr2026",
+  "version": "1.0.0",
+  "description": "Sample Node.js project for GitHub Actions CI in the GenAI-APR2026 repository.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test",
+    "lint": "node --check index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {}
+}

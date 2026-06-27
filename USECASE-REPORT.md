@@ -73,7 +73,9 @@ Automate repository CI/CD and accelerate DevOps workflows using GitHub Actions a
   - Runs `mvn clean test`.
   - Publishes JUnit test results.
 
-- `DEVOPS-ACCELERATION.md` updated with implementation notes and next steps.
+- Sample Node.js project added with `package.json`, `index.js`, `test/index.test.js`, and `package-lock.json`.
+- Sample Java project added with `pom.xml`, `src/main/java/com/example/App.java`, and `src/test/java/com/example/AppTest.java`.
+- `DEVOPS-ACCELERATION.md` updated with implementation notes, VS Code AI guidance, and next steps.
 
 ### Files
 
@@ -93,11 +95,14 @@ Automate repository CI/CD and accelerate DevOps workflows using GitHub Actions a
 - `git status --short` showed the new files.
 - `git commit -m "Add DevOps acceleration workflows and documentation"` created the commit.
 - `git push` reported `main -> main` successfully.
+- Local Node.js validation passed with `npm test`.
+- `package-lock.json` was generated to support `npm ci` in the GitHub Actions workflow.
 
 ### Notes
 
 - These workflows establish a branch strategy check and required automated validations.
 - The repo now contains both GitHub Actions and Azure DevOps pipeline definitions.
+- Local Node.js CI validation is complete; local Maven validation is pending because `mvn` is not installed in this environment.
 
 ---
 
@@ -121,6 +126,43 @@ Enable natural language Kubernetes operations via MCP.
 
 - Kubernetes cluster access could not be verified because the cluster API endpoint was unreachable from this environment.
 - This prevented successful runtime verification of commands such as `kubectl get pods -n production`.
+
+---
+
+## Use Case 2: Infrastructure as Code Automation — Terraform MCP
+
+### Goal
+Prepare the Terraform MCP Server for Terraform plan validation, state inspection, and drift detection.
+
+### What was implemented
+
+- Cloned the Terraform MCP server repository:
+  - `terraform-mcp-server/`
+- Verified the repository contains the Terraform MCP server source and documentation.
+
+### Evidence
+
+- `git clone --depth 1 https://github.com/hashicorp/terraform-mcp-server.git terraform-mcp-server` completed successfully.
+- `terraform-mcp-server/README.md` exists and describes Terraform MCP server usage.
+
+### Status
+
+- No Terraform configuration files (`*.tf`) were present in the main repository root, so no `terraform validate`, `terraform plan`, `terraform apply`, or Terraform state inspection operations were executed.
+- The Terraform MCP server was cloned for preparation only; runtime IaC validation was not completed because there is no target Terraform workspace or configured backend in this repo.
+
+### Next steps
+
+1. Add or reference actual Terraform configuration files such as `main.tf`, `variables.tf`, and backend settings.
+2. Configure the Terraform MCP server environment variables for HCP/TFE:
+   - `TFE_ADDRESS`
+   - `TFE_TOKEN`
+   - `ENABLE_TF_OPERATIONS=true`
+3. Run the server using `terraform-mcp-server stdio` or `terraform-mcp-server streamable-http`.
+4. Use an MCP-capable client to issue natural language commands like:
+   - "Validate the main.tf file for AWS infrastructure"
+   - "Show the Terraform plan for staging environment changes"
+   - "Apply the approved infrastructure changes with auto-approval"
+   - "List all resources managed by Terraform in production"
 
 ---
 

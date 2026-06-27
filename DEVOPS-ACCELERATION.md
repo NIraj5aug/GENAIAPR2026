@@ -29,6 +29,7 @@ This repository now includes example DevOps automation for GitHub Actions and Az
 3. Configure branch protection rules in GitHub for required status checks:
    - `DevOps Acceleration CI` workflow
    - `CodeQL Security Scan` job
+   - `AI PR Review` workflow (optional for PR summary gating)
 4. Confirm the sample Node.js project works:
    - `npm ci`
    - `npm test`

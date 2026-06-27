@@ -23,8 +23,17 @@ This repository demonstrates AI-assisted DevOps acceleration with GitHub Actions
 
 - Push changes to `main` or `develop`.
 - Open Actions tab to confirm the `DevOps Acceleration CI` workflow runs.
+- On pull requests, confirm the `AI PR Review` workflow comments a summary and review guidance.
 
-### 3. Run Azure DevOps pipeline
+### 3. Pull request guidance
+
+- Use `.github/pull_request_template.md` for PR descriptions.
+- Ensure the PR checklist includes:
+  - CI passed: `DevOps Acceleration CI`
+  - CodeQL scan completed
+  - AI PR review summary generated
+
+### 4. Run Azure DevOps pipeline
 
 - Import `azure-pipelines.yml` into Azure DevOps.
 - Ensure the repo has a valid `pom.xml` and Java source.
